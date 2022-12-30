@@ -13,7 +13,9 @@ function App() {
     setError(null);
 
     try {
-      const response = await fetch("https://react-http-744a2-default-rtdb.firebaseio.com/movies.json");
+      const response = await fetch(
+        "https://react-http-744a2-default-rtdb.firebaseio.com/movies.json"
+      );
 
       if (!response.ok) {
         throw new Error("Something went wrong"); // the condition of the error is before parsing data.
@@ -28,45 +30,47 @@ function App() {
           id: key,
           title: data[key].title,
           openingText: data[key].openingText,
-          releaseDate: data[key].releaseDate
-        })
+          releaseDate: data[key].releaseDate,
+        });
       }
-      
+
       setMovies(loadedMovies);
-    } 
-    catch (error) {
+    } catch (error) {
       setError(error.message);
     }
     setIsLoading(false);
-  }, [] );
+  }, []);
 
   useEffect(() => {
     fetchMoviesHandler();
-  }, [fetchMoviesHandler])
+  }, [fetchMoviesHandler]);
 
   const addMovieHandler = async (movie) => {
-   const response = await fetch('https://react-http-744a2-default-rtdb.firebaseio.com/movies.json', {
-      method: 'POST',
-      body: JSON.stringify(movie),
-      headers: {
-        'Content-Type': 'application/json'
+    const response = await fetch(
+      "https://react-http-744a2-default-rtdb.firebaseio.com/movies.json",
+      {
+        method: "POST",
+        body: JSON.stringify(movie),
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
-    });
+    );
     const data = await response.json();
     console.log(data);
-  }
+  };
 
-  let conditionalContent = <p> Try to fetch a good movie </p>
+  let conditionalContent = <p> Try to fetch a good movie </p>;
   if (movies.length > 0) {
-    conditionalContent = <MovieList movies={movies} />
+    conditionalContent = <MovieList movies={movies} />;
   }
 
   if (error) {
-    conditionalContent = <p> {error} </p>
+    conditionalContent = <p> {error} </p>;
   }
 
   if (isLoading) {
-    conditionalContent = <p> Loading Page...</p>
+    conditionalContent = <p> Loading Page...</p>;
   }
   return (
     <React.Fragment>
@@ -76,9 +80,7 @@ function App() {
       <section>
         <button onClick={fetchMoviesHandler}> Fetch Movies</button>
       </section>
-      <section>
-        {conditionalContent}
-      </section>
+      <section>{conditionalContent}</section>
     </React.Fragment>
   );
 }
