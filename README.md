@@ -8,8 +8,10 @@ In the project directory, you can run:
 
 ### `npm start`
 
+You are going to be able to see the project right below by clicking the link
+
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [link](https://63aeec36069fae0d1226b602--sparkling-dieffenbachia-5b5180.netlify.app/) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
